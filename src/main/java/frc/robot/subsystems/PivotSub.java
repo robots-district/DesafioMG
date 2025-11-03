@@ -32,14 +32,14 @@ public class PivotSub extends SubsystemBase {
 
   public PivotSub() {
     configSparkPivotMotor
-      .inverted(false)
+      .inverted(true)
       .idleMode(IdleMode.kBrake)
-      .smartCurrentLimit(60);
+      .smartCurrentLimit(30);
     
     configSparkFollowerPivotMotor
-      .inverted(false)
+      .inverted(true)
       .idleMode(IdleMode.kBrake)
-      .smartCurrentLimit(60)
+      .smartCurrentLimit(30)
       .follow(SubConstants.PivotConstants.pivotMotorID, true);
 
     configSparkPivotMotor.closedLoop
@@ -64,7 +64,7 @@ public class PivotSub extends SubsystemBase {
     SmartDashboard.putNumber("RPM Motor pivot", pivotEncoder.getVelocity());
     SmartDashboard.putNumber("RPS Motor pivot", pivotEncoder.getVelocity() / 60.0);
     SmartDashboard.putNumber("Current Motor pivot", pivotMotor.getOutputCurrent());
-    // neoMotor.setVoltage(0.125);
+    // pivotMotor.setVoltage(-0.4);
   }
 
   public void stopPivot() {

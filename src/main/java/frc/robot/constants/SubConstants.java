@@ -9,12 +9,12 @@ package frc.robot.constants;
  */
 public final class SubConstants {
   public static class PivotConstants {
-    public static int pivotMotorID = 13;
-    public static int pivotFollowerMotorID = 14;
+    public static int pivotMotorID = 2;
+    public static int pivotFollowerMotorID = 1;
 
     public static final double PID_TOLERANCE = 0.1;
 
-    public static final double kP = 0.5;
+    public static final double kP = 0.032;
     public static final double kI = 0;
     public static final double kD = 0;
     public static final double arbFF = 0;
@@ -24,13 +24,13 @@ public final class SubConstants {
   }
 
   public static class DeployerConstants {
-    public static int deployerMotorID = 11;
-    public static int deployerMotorFollowerID = 12;
+    public static int deployerMotorID = 3;
+    public static int deployerMotorFollowerID = 4;
   }
 
   public static enum PivotState {
-    DefaultPos(0), DeployPos(2), IntakePos(5);
-    public final double position; 
+    DefaultPos(0), DeployPos(-6.2), IntakePos(-20);
+    public final double position;
       
     private PivotState(double position){
       this.position = position;
@@ -38,7 +38,7 @@ public final class SubConstants {
   }
 
   public static enum DeployerState {
-    Intake(-0.4), Deploy(0.7);
+    Intake(-0.5), Deploy(0.4);
     public final double velocity; 
       
     private DeployerState(double velocity){

@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants;
+import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.DriveTrainSystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -54,10 +54,10 @@ public class DriveWithJoystick extends Command {
     } else if (joystick1.getRawButton(1)){
       velocidade = 0;
     } 
-    turn = joystick1.getRawAxis(Constants.ControlsJoystick.leftMotors) * velocidade;
-    drive =  joystick1.getRawAxis(Constants.ControlsJoystick.rightMotors) * velocidade;
+    turn = joystick1.getRawAxis(DriveConstants.ControlsJoystick.leftMotors) * velocidade;
+    drive =  joystick1.getRawAxis(DriveConstants.ControlsJoystick.rightMotors) * velocidade;
     
-    driveTrainSystem.tankmode(-drive, -turn);
+    driveTrainSystem.arcadeMode(-drive, -turn);
   }
 
   // Called once the command ends or is interrupted.

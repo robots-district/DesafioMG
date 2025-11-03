@@ -16,6 +16,7 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.SubConstants;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DeployerSub extends SubsystemBase {
@@ -27,6 +28,8 @@ public class DeployerSub extends SubsystemBase {
   SparkMaxConfig configSparkDeployerMotor = new SparkMaxConfig();
   SparkMaxConfig configSparkFollowerDeployerMotor = new SparkMaxConfig();
 
+  public DigitalInput deployerSensor;
+
   public DeployerSub() {
     configSparkDeployerMotor
       .inverted(false)
@@ -36,16 +39,20 @@ public class DeployerSub extends SubsystemBase {
     configSparkFollowerDeployerMotor
       .inverted(false)
       .idleMode(IdleMode.kBrake)
-      .smartCurrentLimit(60)
+      .smartCurrentLimit(30)
       .follow(SubConstants.DeployerConstants.deployerMotorID, false);
 
     deployerMotor.configure(configSparkDeployerMotor, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     deployerMotorFollower.configure(configSparkFollowerDeployerMotor, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    deployerSensor = new DigitalInput(1);
     
     zeroDeployer();
   }
 
   public void periodic() {
+    SmartDashboard.putBoolean("DeployerSensor", deployerSensor.get());
+
     SmartDashboard.putNumber("Encoder deployer", getDeployerEncoderPosition());
     SmartDashboard.putNumber("RPM Motor deployer", deployerEncoder.getVelocity());
     SmartDashboard.putNumber("RPS Motor deployer", deployerEncoder.getVelocity() / 60.0);

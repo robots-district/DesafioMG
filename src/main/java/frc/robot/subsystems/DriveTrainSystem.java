@@ -12,24 +12,26 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.constants.DriveConstants;
 
 import com.revrobotics.spark.SparkBase.ResetMode;
 
 
 public class DriveTrainSystem extends SubsystemBase {
 
-  SparkMax rightMotorFront = new SparkMax(Constants.DriveTrainConstants.rightFrontMotorID, MotorType.kBrushed);
-  SparkMax rightMotorBack = new SparkMax(Constants.DriveTrainConstants.rightBackMotorID, MotorType.kBrushed);
-  SparkMax leftMotorback = new SparkMax(Constants.DriveTrainConstants.leftFrontMotorID, MotorType.kBrushed);
-  SparkMax leftMotorFront = new SparkMax(Constants.DriveTrainConstants.leftBackMotorID, MotorType.kBrushed);
+  SparkMax rightMotorFront = new SparkMax(DriveConstants.DriveTrainConstants.rightFrontMotorID, MotorType.kBrushed);
+  SparkMax rightMotorBack = new SparkMax(DriveConstants.DriveTrainConstants.rightBackMotorID, MotorType.kBrushed);
+  SparkMax leftMotorback = new SparkMax(DriveConstants.DriveTrainConstants.leftFrontMotorID, MotorType.kBrushed);
+  SparkMax leftMotorFront = new SparkMax(DriveConstants.DriveTrainConstants.leftBackMotorID, MotorType.kBrushed);
 
   SparkMaxConfig configSparkMotorEsquerda = new SparkMaxConfig();
   SparkMaxConfig configSparkMotorDireita = new SparkMaxConfig();
 
 
-
+  @SuppressWarnings("removal")
   MotorControllerGroup leftMotorControllerGroup = new MotorControllerGroup(leftMotorFront, leftMotorback);
+
+  @SuppressWarnings("removal")
   MotorControllerGroup rightMotorControllerGroup = new MotorControllerGroup(rightMotorFront, rightMotorBack);
 
   DifferentialDrive differentialDrive = new DifferentialDrive(leftMotorControllerGroup, rightMotorControllerGroup);
